@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Fentastic</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="text_username">User Name</string>
+    <string name="text_password">Password</string>
+    <string name="text_login">Login</string>
+</resources>
