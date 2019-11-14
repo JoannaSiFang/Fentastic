@@ -15,6 +15,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText usernameText;
     EditText passwordText;
     Button loginButton;
+    Button registerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
         usernameText = (EditText) findViewById(R.id.input_text_username);
         passwordText = (EditText) findViewById(R.id.input_text_password);
         loginButton = findViewById(R.id.button_login);
+
 
         // set page title
         setTitle("Login");
@@ -40,6 +42,16 @@ public class LoginActivity extends AppCompatActivity {
                 Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);
                 loginIntent.putExtra("Message", "Hello World");
                 startActivity(loginIntent);
+            }
+        });
+
+        registerButton = findViewById(R.id.button_reg);
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentRegister = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intentRegister);
+
             }
         });
     }
