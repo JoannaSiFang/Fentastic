@@ -1,8 +1,15 @@
 <resources>
     <string name="app_name">Fentastic</string>
     <string name="title_home">Home</string>
+    <string name="title_get_data">Measure</string>
+    <string name="title_result">Result</string>
+    <string name="title_history">History</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="functionality_get_data">Start/End</string>
+    <string name="functionality_submit_data">Submit</string>
+    <string name="functionality_instructions1">Attach your censor and click start button when ready</string>
+    <string name="functionality_instructions2">Click End when ready</string>
     <string name="text_username">User Name</string>
     <string name="text_password">Password</string>
     <string name="text_login">Login</string>

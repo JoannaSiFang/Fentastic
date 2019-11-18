@@ -2,8 +2,11 @@ package com.android.ethetiqs.fentastic;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -12,6 +15,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,10 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String message = intent.getStringExtra("Message");
+
+
     }
 
 }
+
+
