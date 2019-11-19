@@ -9,13 +9,22 @@
         android:id="@+id/navigation_home"
         android:name="com.android.ethetiqs.fentastic.ui.home.HomeFragment"
         android:label="@string/title_get_data"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        <action android:id="@+id/action_measure_to_display"
+            app:destination="@id/navigation_dashboard"/>
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.android.ethetiqs.fentastic.ui.dashboard.DashboardFragment"
         android:label="@string/title_history"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <argument
+            android:defaultValue="0"
+            android:name="inputMeasureDataId"
+            app:argType="string" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/navigation_notifications"
