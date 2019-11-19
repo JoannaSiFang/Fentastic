@@ -19,10 +19,6 @@
         android:name="com.android.ethetiqs.fentastic.ui.dashboard.DashboardFragment"
         android:label="@string/title_history"
         tools:layout="@layout/fragment_dashboard" >
-        <argument
-            android:defaultValue="0"
-            android:name="inputMeasureDataId"
-            app:argType="string" />
     </fragment>
 
 

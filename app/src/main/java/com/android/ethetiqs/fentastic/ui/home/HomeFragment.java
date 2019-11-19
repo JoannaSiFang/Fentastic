@@ -1,6 +1,6 @@
 package com.android.ethetiqs.fentastic.ui.home;
 
-import android.content.Intent;
+import android.app.TabActivity;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.LayoutInflater;
@@ -10,14 +10,12 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
 
-import com.android.ethetiqs.fentastic.LoginActivity;
-import com.android.ethetiqs.fentastic.MainActivity;
 import com.android.ethetiqs.fentastic.R;
 import com.android.ethetiqs.fentastic.ui.dashboard.DashboardFragment;
 
@@ -26,7 +24,7 @@ import java.util.Timer;
 
 public class HomeFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
+    private SharedViewModel mSharedViewModel;
     State currentstate = State.Initialized;
     Button StartEndButton;
     Button SubmitButton;
@@ -36,17 +34,17 @@ public class HomeFragment extends Fragment {
     Timer timer;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
+        mSharedViewModel =
+                ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-         meterrunning = false;
+//        final TextView textView = root.findViewById(R.id.text_home);
+//        mSharedViewModel.getInputDataId().observe(this, new Observer<String>() {
+//            @Override
+//            public void onChanged(@Nullable String s) {
+//                textView.setText(s);
+//            }
+//        });
+        meterrunning = false;
 
         Instructions = root.findViewById(R.id.text_view_id);
         StartEndButton = root.findViewById(R.id.material_button);
@@ -79,8 +77,8 @@ public class HomeFragment extends Fragment {
         SubmitButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                // submit my result to the backend
-
+                mSharedViewModel.setInputDataId("30");
+                Navigation.findNavController(view).navigate(R.id.action_measure_to_display);
             }
         });
         return root;
