@@ -19,4 +19,12 @@
     <string name="pregnancy">Weeks into pregnancy</string>
     <string name="text_submit">Submit</string>
     <string name="text_reg">Register</string>
+
+<!--    input 23 metrics here-->
+    <string-array name="names">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
 </resources>
