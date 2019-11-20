@@ -10,13 +10,15 @@
     <string name="functionality_submit_data">Submit</string>
     <string name="functionality_instructions1">Attach your censor and click start button when ready</string>
     <string name="functionality_instructions2">Click End when ready</string>
-    <string name="text_username">User Name</string>
+    <string name="text_username">Email</string>
     <string name="text_password">Password</string>
     <string name="text_login">Login</string>
-    <string name="new_user_name">User Name</string>
+    <string name="new_user_name">Email</string>
     <string name="new_password">Password</string>
     <string name="confirm_new_password">Confirm Password</string>
     <string name="pregnancy">Weeks into pregnancy</string>
     <string name="text_submit">Submit</string>
     <string name="text_reg">Register</string>
+    <string name="text_login_fromreg">Already have an account? Login</string>
+
 </resources>

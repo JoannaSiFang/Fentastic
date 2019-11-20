@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "374417970554",
+    "firebase_url": "https://fentastic-addcb.firebaseio.com",
+    "project_id": "fentastic-addcb",
+    "storage_bucket": "fentastic-addcb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:374417970554:android:56c912f968483a7d1872c3",
+        "android_client_info": {
+          "package_name": "com.android.ethetiqs.fentastic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "374417970554-s9ekdgarvfmp8aoeap4ijnn5vt6oemid.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.ethetiqs.fentastic",
+            "certificate_hash": "afc4263c2a37a12f113775181a0a8b2223b1cd32"
+          }
+        },
+        {
+          "client_id": "374417970554-51573jsd7oe1k8smrustfs3livus6o2p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCWVrVrvYUMr5rXktZ6JydQ18EhLOnko4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "374417970554-51573jsd7oe1k8smrustfs3livus6o2p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
