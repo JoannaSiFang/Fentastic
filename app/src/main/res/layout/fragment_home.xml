@@ -27,13 +27,13 @@
 
         <TextView
             android:id="@+id/text_view_id"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:paddingLeft="25dp"
             android:paddingRight="25dp"
             android:text="@string/functionality_instructions1"
-            android:textSize="26dp" />
+            android:textSize="26sp" />
     </LinearLayout>
 
     <GridLayout
@@ -69,6 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_row="1"
         android:layout_column="0"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@id/home_submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
