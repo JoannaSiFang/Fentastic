@@ -11,20 +11,14 @@
         android:label="@string/title_get_data"
         tools:layout="@layout/fragment_home">
         <action android:id="@+id/action_measure_to_display"
-            app:destination="@id/navigation_dashboard"/>
+            app:destination="@id/navigation_result"/>
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.android.ethetiqs.fentastic.ui.dashboard.DashboardFragment"
+        android:id="@+id/navigation_result"
+        android:name="com.android.ethetiqs.fentastic.ui.result.ResultFragment"
         android:label="@string/title_history"
-        tools:layout="@layout/fragment_dashboard" >
+        tools:layout="@layout/fragment_result" >
     </fragment>
 
-
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.android.ethetiqs.fentastic.ui.notifications.NotificationsFragment"
-        android:label="@string/title_result"
-        tools:layout="@layout/fragment_notifications" />
 </navigation>

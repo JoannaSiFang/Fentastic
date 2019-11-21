@@ -1,6 +1,5 @@
 package com.android.ethetiqs.fentastic.ui.home;
 
-import android.app.TabActivity;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.LayoutInflater;
@@ -12,12 +11,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
 import com.android.ethetiqs.fentastic.R;
-import com.android.ethetiqs.fentastic.ui.dashboard.DashboardFragment;
+import com.android.ethetiqs.fentastic.ui.SharedViewModel;
 
 import java.util.Timer;
 
@@ -37,13 +35,7 @@ public class HomeFragment extends Fragment {
         mSharedViewModel =
                 ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-//        final TextView textView = root.findViewById(R.id.text_home);
-//        mSharedViewModel.getInputDataId().observe(this, new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
+        
         meterrunning = false;
 
         Instructions = root.findViewById(R.id.text_view_id);

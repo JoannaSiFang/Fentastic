@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:hint="@string/new_user_name"
-        app:helperText="@string/new_user_name"
+        app:helperText="@string/text_username_hint"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -35,7 +35,7 @@
         android:layout_marginEnd="12dp"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:hint="@string/new_password"
-        app:helperText="@string/new_password"
+        app:helperText="@string/text_password_hint"
         app:errorEnabled="true"
         app:layout_constraintTop_toBottomOf="@id/email_text_input"
         app:layout_constraintRight_toRightOf="parent"

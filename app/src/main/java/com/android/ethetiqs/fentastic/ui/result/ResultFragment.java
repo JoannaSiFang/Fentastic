@@ -1,4 +1,4 @@
-package com.android.ethetiqs.fentastic.ui.dashboard;
+package com.android.ethetiqs.fentastic.ui.result;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,11 +14,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.android.ethetiqs.fentastic.HistoryActivity;
 import com.android.ethetiqs.fentastic.R;
-import com.android.ethetiqs.fentastic.ui.home.SharedViewModel;
+import com.android.ethetiqs.fentastic.ui.SharedViewModel;
 
-public class DashboardFragment extends Fragment {
+public class ResultFragment extends Fragment {
 
     private SharedViewModel mSharedViewModel;
 
@@ -26,7 +25,7 @@ public class DashboardFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         mSharedViewModel =
                 ViewModelProviders.of(getActivity()).get(SharedViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        View root = inflater.inflate(R.layout.fragment_result, container, false);
         final TextView textView = root.findViewById(R.id.text_dashboard);
         mSharedViewModel.getInputDataId().observe(this, new Observer<String>() {
             @Override

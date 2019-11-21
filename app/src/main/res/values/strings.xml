@@ -11,7 +11,9 @@
     <string name="functionality_instructions1">Attach your censor and click start button when ready</string>
     <string name="functionality_instructions2">Click End when ready</string>
     <string name="text_username">User Name</string>
+    <string name="text_username_hint">Enter your email address</string>>
     <string name="text_password">Password</string>
+    <string name="text_password_hint">Password must be longer than 6 characters</string>
     <string name="text_login">Login</string>
     <string name="new_user_name">User Name</string>
     <string name="new_password">Password</string>

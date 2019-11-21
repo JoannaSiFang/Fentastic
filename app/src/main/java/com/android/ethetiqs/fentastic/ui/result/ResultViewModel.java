@@ -1,16 +1,16 @@
-package com.android.ethetiqs.fentastic.ui.notifications;
+package com.android.ethetiqs.fentastic.ui.result;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class NotificationsViewModel extends ViewModel {
+public class ResultViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public NotificationsViewModel() {
+    public ResultViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is notifications fragment");
+        mText.setValue("This is yatusa fragment");
     }
 
     public LiveData<String> getText() {

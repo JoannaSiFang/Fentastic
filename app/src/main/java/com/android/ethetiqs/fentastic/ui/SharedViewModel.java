@@ -1,4 +1,4 @@
-package com.android.ethetiqs.fentastic.ui.home;
+package com.android.ethetiqs.fentastic.ui;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
