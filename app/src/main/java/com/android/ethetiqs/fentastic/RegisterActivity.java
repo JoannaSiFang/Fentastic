@@ -16,12 +16,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
     Button submitButton;
-    EditText editTextEmail, editTextPassword;
+    EditText editTextEmail, editTextPassword, editTextWeeks;
     private FirebaseAuth mAuth;
 
     @Override
@@ -30,6 +34,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_register);
         editTextEmail = (EditText) findViewById(R.id.email_text_input_edittext);
         editTextPassword = (EditText) findViewById(R.id.password_edit_text);
+        editTextWeeks = (EditText) findViewById(R.id.pregnancy_edit_text);
+
         mAuth = FirebaseAuth.getInstance();
 
         findViewById(R.id.button_sub).setOnClickListener(this);
@@ -47,8 +53,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void registerUser() {
-        String email = editTextEmail.getText().toString().trim();
+        final String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
+        final String week = editTextWeeks.getText().toString();
 
         if (email.isEmpty()) {
             editTextEmail.setError("Email is required");
@@ -68,6 +75,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return;
         }
 
+        if (week.isEmpty()) {
+            editTextWeeks.setError("Weeks into pregnancy is required");
+            editTextWeeks.requestFocus();
+            return;
+        }
+
+
+
         if (password.length() < 6) {
             editTextPassword.setError("Minimum length of a password should be 6");
             editTextPassword.requestFocus();
@@ -78,6 +93,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+                    String user_id = mAuth.getCurrentUser().getUid();
+                    DatabaseReference current_user_bd = FirebaseDatabase.getInstance().getReference().child("Users").child(user_id);
+                    Map newPost = new HashMap();
+                    newPost.put("email", email);
+                    newPost.put("weeks", week);
+                    current_user_bd.setValue(newPost);
+
                     Toast.makeText(getApplicationContext(), "User registered successfully", Toast.LENGTH_SHORT).show();
                     Intent loginIntent = new Intent(RegisterActivity.this, LoginActivity.class);
                     startActivity(loginIntent);
@@ -87,6 +109,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             }
         });
     }
+
 
     public void onClick(View view) {
         switch (view.getId()) {

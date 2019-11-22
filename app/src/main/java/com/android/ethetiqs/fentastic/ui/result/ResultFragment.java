@@ -35,7 +35,6 @@ public class ResultFragment extends Fragment {
         });
 
         //implement spinner function
-
         Spinner mySpinner = (Spinner) root.findViewById(R.id.spinner1);
 
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(root.getContext(),

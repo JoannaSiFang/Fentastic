@@ -18,7 +18,8 @@ android {
     }
 }
 
-dependencies {
+dependencies{
+    implementation 'com.google.firebase:firebase-database:19.2.0'
     implementation 'com.google.firebase:firebase-core:17.2.1'
     implementation 'com.google.firebase:firebase-analytics:17.2.1'
     implementation 'com.github.lecho:hellocharts-library:1.5.8@aar'

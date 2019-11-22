@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "User registered successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "User login successfully", Toast.LENGTH_SHORT).show();
                     Intent loginIntent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(loginIntent);
                 } else {
