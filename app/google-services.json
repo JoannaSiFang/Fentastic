@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "374417970554-38nmqf506mpvk8ra7ocfkl0vic8djsk8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.ethetiqs.fentastic",
+            "certificate_hash": "70be5f21e6fbbe7285c0ab4cded59acfa32d42c5"
+          }
+        },
+        {
           "client_id": "374417970554-s9ekdgarvfmp8aoeap4ijnn5vt6oemid.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

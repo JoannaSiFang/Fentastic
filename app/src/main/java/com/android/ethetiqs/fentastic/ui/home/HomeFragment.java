@@ -17,6 +17,7 @@ import androidx.navigation.Navigation;
 import com.android.ethetiqs.fentastic.R;
 import com.android.ethetiqs.fentastic.ui.SharedViewModel;
 
+import java.util.Random;
 import java.util.Timer;
 
 
@@ -55,7 +56,13 @@ public class HomeFragment extends Fragment {
                 }else if (currentstate == State.CollectingData){
                     pauseChromometer(view);
                     currentstate = State.DataCollected;
-                    Instructions.setText(R.string.functionality_instructions1);
+                    Random rd = new Random();
+                    Integer inputvalue = new Integer(rd.nextInt(100));
+                    //send to backend input data,
+                    // get response
+                    Integer resultvalue = psudogetgeneralresult(inputvalue);
+                    mSharedViewModel.setInputDataId(resultvalue.toString());
+                    Instructions.setText(getResources().getString(R.string.functionality_result,resultvalue));
                     SubmitButton.setEnabled(true);
                 }else if (currentstate == State.DataCollected){
                     currentstate = State.CollectingData;
@@ -69,7 +76,6 @@ public class HomeFragment extends Fragment {
         SubmitButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                mSharedViewModel.setInputDataId("30");
                 Navigation.findNavController(view).navigate(R.id.action_measure_to_display);
             }
         });
@@ -105,6 +111,10 @@ public class HomeFragment extends Fragment {
 
     public void resetChromometer(View v){
 
+    }
+    public int psudogetgeneralresult(int inputvalue){
+        Random rd = new Random();
+        return rd.nextInt(10);
     }
 
 

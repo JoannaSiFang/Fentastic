@@ -9,7 +9,8 @@
     <string name="functionality_get_data">Start/End</string>
     <string name="functionality_submit_data">Submit</string>
     <string name="functionality_instructions1">Attach your censor and click start button when ready</string>
-    <string name="functionality_instructions2">Click End when ready</string>
+    <string name="functionality_instructions2">Measure for 60 seconds Click End when ready</string>
+    <string name="functionality_result">Your general health score is %1$d </string>
     <string name="text_username">User Name</string>
     <string name="text_username_hint">Enter your email address</string>>
     <string name="text_password">Password</string>
