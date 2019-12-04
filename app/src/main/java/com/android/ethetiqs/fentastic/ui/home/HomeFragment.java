@@ -1,5 +1,6 @@
 package com.android.ethetiqs.fentastic.ui.home;
 
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.LayoutInflater;
@@ -16,9 +17,16 @@ import androidx.navigation.Navigation;
 
 import com.android.ethetiqs.fentastic.R;
 import com.android.ethetiqs.fentastic.ui.SharedViewModel;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.Random;
-import java.util.Timer;
+import java.io.InputStream;
+import java.util.*;
+
+import jxl.Cell;
+import jxl.Sheet;
+import jxl.Workbook;
 
 
 public class HomeFragment extends Fragment {
@@ -60,7 +68,7 @@ public class HomeFragment extends Fragment {
                     Integer inputvalue = new Integer(rd.nextInt(100));
                     //send to backend input data,
                     // get response
-                    Integer resultvalue = psudogetgeneralresult(inputvalue);
+                    Integer resultvalue = new Random().nextInt(10);
                     mSharedViewModel.setInputDataId(resultvalue.toString());
                     Instructions.setText(getResources().getString(R.string.functionality_result,resultvalue));
                     SubmitButton.setEnabled(true);
@@ -76,6 +84,7 @@ public class HomeFragment extends Fragment {
         SubmitButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                psudogetgeneralresult();
                 Navigation.findNavController(view).navigate(R.id.action_measure_to_display);
             }
         });
@@ -112,14 +121,36 @@ public class HomeFragment extends Fragment {
     public void resetChromometer(View v){
 
     }
-    public int psudogetgeneralresult(int inputvalue){
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();;
+    public void psudogetgeneralresult(){
         Random rd = new Random();
-        return rd.nextInt(10);
+        try {
+            AssetManager am = getContext().getAssets();
+            InputStream is = am.open("fentastic_WS.xls");
+            Workbook wb = Workbook.getWorkbook(is);
+            Sheet sheet = wb.getSheet(0);
+            //int row = sheet.getRows();
+            //int col = sheet.getColumns();
+            final String[] healthInfo = {"SDNN", "RMSSD","SDSD","pNN50","pNN20","IQRNN","HTI","SKEW","KURT","AHRR","WS"};
+            String userId = mAuth.getCurrentUser().getUid();
+            DatabaseReference currentUserHealthInfo = FirebaseDatabase.getInstance().getReference().child("Users").child(userId).child("healthInfo");
+            int row = rd.nextInt(501);
+            Date currentTime = Calendar.getInstance().getTime();
+
+            for (int i = 0; i < sheet.getColumns(); i++) {
+                Cell z = sheet.getCell(i, row);
+                float data = Float.valueOf(z.getContents().trim()).floatValue();
+                DatabaseReference cur = currentUserHealthInfo.child(healthInfo[i]);
+                Map newPost = new HashMap();
+                newPost.put(currentTime.toString(), data);
+                cur.updateChildren(newPost);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
-
-
-
 }
+
 
 enum State {
     Initialized,
