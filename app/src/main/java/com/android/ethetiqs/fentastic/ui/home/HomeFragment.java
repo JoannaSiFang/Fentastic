@@ -20,6 +20,7 @@ import com.android.ethetiqs.fentastic.ui.SharedViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.io.InputStream;
 import java.util.*;
@@ -27,6 +28,8 @@ import java.util.*;
 import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
+
+import java.text.SimpleDateFormat;
 
 
 public class HomeFragment extends Fragment {
@@ -121,7 +124,9 @@ public class HomeFragment extends Fragment {
     public void resetChromometer(View v){
 
     }
-    private FirebaseAuth mAuth = FirebaseAuth.getInstance();;
+
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private final String[] HEALTH_INFO = {"SDNN", "RMSSD","SDSD","pNN50","pNN20","IQRNN","HTI","SKEW","KURT","AHRR","WS"};
     public void psudogetgeneralresult(){
         Random rd = new Random();
         try {
@@ -129,25 +134,28 @@ public class HomeFragment extends Fragment {
             InputStream is = am.open("fentastic_WS.xls");
             Workbook wb = Workbook.getWorkbook(is);
             Sheet sheet = wb.getSheet(0);
-            //int row = sheet.getRows();
-            //int col = sheet.getColumns();
-            final String[] healthInfo = {"SDNN", "RMSSD","SDSD","pNN50","pNN20","IQRNN","HTI","SKEW","KURT","AHRR","WS"};
+
             String userId = mAuth.getCurrentUser().getUid();
             DatabaseReference currentUserHealthInfo = FirebaseDatabase.getInstance().getReference().child("Users").child(userId).child("healthInfo");
             int row = rd.nextInt(501);
-            Date currentTime = Calendar.getInstance().getTime();
+            SimpleDateFormat sdf = new SimpleDateFormat();
+            sdf.applyPattern("yyyy-MM-dd HH:mm:ss");
+            Date date = new Date();
 
             for (int i = 0; i < sheet.getColumns(); i++) {
                 Cell z = sheet.getCell(i, row);
-                float data = Float.valueOf(z.getContents().trim()).floatValue();
-                DatabaseReference cur = currentUserHealthInfo.child(healthInfo[i]);
-                Map newPost = new HashMap();
-                newPost.put(currentTime.toString(), data);
+                float data = Float.valueOf(z.getContents().trim());
+                DatabaseReference cur = currentUserHealthInfo.child(HEALTH_INFO[i]);
+                Map<String, Object> newPost = new TreeMap<>();
+
+                newPost.put(sdf.format(date), data);
                 cur.updateChildren(newPost);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
     }
 }
 
