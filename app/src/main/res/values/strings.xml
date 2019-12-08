@@ -8,7 +8,7 @@
     <string name="title_notifications">Notifications</string>
     <string name="functionality_get_data">Start/End</string>
     <string name="functionality_submit_data">Submit</string>
-    <string name="functionality_instructions1">Attach your censor and click start button when ready</string>
+    <string name="functionality_instructions1">Attach your sensor and click start button when ready</string>
     <string name="functionality_instructions2">Measure for 60 seconds Click End when ready</string>
     <string name="functionality_result">Your general health score is %1$d </string>
     <string name="text_username">User Name</string>
@@ -26,9 +26,15 @@
 
     <!--    input 23 metrics here-->
     <string-array name="names">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
+        <item>SDNN</item>
+        <item>RMSSD</item>
+        <item>SDSD</item>
+        <item>pNN50</item>
+        <item>pNN20</item>
+        <item>IQRNN</item>
+        <item>HTI</item>
+        <item>SKEW</item>
+        <item>AHRR</item>
+        <item>WS</item>
     </string-array>
 </resources>

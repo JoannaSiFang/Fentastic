@@ -38,7 +38,7 @@ public class ResultFragment extends Fragment implements AdapterView.OnItemSelect
     private MySparkAdapter sparkAdapter;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
-    private Map<String, TreeMap<String,Float>> healthInfoHistoryMap = new HashMap<>();
+    private Map<String, TreeMap<String,Double>> healthInfoHistoryMap = new HashMap<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -57,13 +57,15 @@ public class ResultFragment extends Fragment implements AdapterView.OnItemSelect
         mySpinner = (Spinner) root.findViewById(R.id.spinner1);
         mySpinner.setOnItemSelectedListener(this);
         sparkView = (SparkView) root.findViewById(R.id.sparkview);
-        float[] dummydata = new float[20];
-        Random rd = new Random();
-        for (int i = 0; i < 20; i++){
-            dummydata[i] = 0;
-        }
+//        float[] dummydata = new float[20];
+//        Random rd = new Random();
+//        for (int i = 0; i < 20; i++){
+//            dummydata[i] = 0;
+//        }
+        List<Double> dummydata = getHealthData(1);
         sparkAdapter = new MySparkAdapter();
-        //sparkView.setAdapter(sparkAdapter);
+        sparkAdapter.updateAllData(dummydata);
+        sparkView.setAdapter(sparkAdapter);
 
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(root.getContext(),
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.names));
@@ -83,8 +85,8 @@ public class ResultFragment extends Fragment implements AdapterView.OnItemSelect
                     if (healthInfoName == null) {
                         return;
                     }
-                    HashMap<String, Float> newMap = (HashMap) dataSnapshot.getValue();
-                    TreeMap<String, Float> changedMap = new TreeMap();
+                    HashMap<String, Double> newMap = (HashMap) dataSnapshot.getValue();
+                    TreeMap<String, Double> changedMap = new TreeMap();
                     changedMap.putAll(newMap);
                     healthInfoHistoryMap.put(healthInfoName, changedMap);
                     //System.out.println("dataSnapshot:" + newMap);
@@ -110,8 +112,8 @@ public class ResultFragment extends Fragment implements AdapterView.OnItemSelect
 
         String keyword = adapterView.getItemAtPosition(i).toString();
         //get data
-        getHealthData(i);
-        float[] dummydata = new float[0];
+        List<Double> dummydata = getHealthData(i);
+//        float[] dummydata = new float[0];
 //        Float[] dummy = (Float[]) vals.toArray();
 //        System.out.println("dummy: "+ dummy.toString());
 
@@ -126,15 +128,15 @@ public class ResultFragment extends Fragment implements AdapterView.OnItemSelect
 
     }
 
-    private List<Float> getHealthData(int i) {
-        TreeMap<String, Float> curInfo = healthInfoHistoryMap.get(HEALTH_INFO[i]);
+    private List<Double> getHealthData(int i) {
+        TreeMap<String, Double> curInfo = healthInfoHistoryMap.get(HEALTH_INFO[i]);
         if (curInfo == null) {
             return new ArrayList<>();
         }
         Set<String> keys = curInfo.keySet();
         Iterator<String> iter = keys.iterator();
 
-        List<Float> valueSortedByDate =  new ArrayList<>();
+        List<Double> valueSortedByDate =  new ArrayList<>();
 
         while (iter.hasNext() ) {
             String key = iter.next();
@@ -146,9 +148,9 @@ public class ResultFragment extends Fragment implements AdapterView.OnItemSelect
 }
 
 class MySparkAdapter extends SparkAdapter {
-    private float[] yData;
+    private List<Double> yData = new ArrayList<>();
 
-    public MySparkAdapter(float[] yData) {
+    public MySparkAdapter(List<Double> yData) {
         this.yData = yData;
     }
     public MySparkAdapter(){
@@ -156,20 +158,22 @@ class MySparkAdapter extends SparkAdapter {
     }
     @Override
     public int getCount() {
-        return yData.length;
+        return yData.size();
     }
 
     @Override
     public Object getItem(int index) {
-        return yData[index];
+        return yData.get(index);
     }
 
     @Override
     public float getY(int index) {
-        return yData[index];
+        double d = yData.get(index);
+        float f = (float) d;
+        return f;
     }
 
-    public void updateAllData(float[] data){
+    public void updateAllData(List<Double> data){
         yData = data;
     }
 }

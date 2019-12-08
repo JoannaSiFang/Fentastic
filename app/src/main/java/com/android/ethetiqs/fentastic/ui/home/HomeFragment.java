@@ -144,7 +144,7 @@ public class HomeFragment extends Fragment {
 
             for (int i = 0; i < sheet.getColumns(); i++) {
                 Cell z = sheet.getCell(i, row);
-                float data = Float.valueOf(z.getContents().trim());
+                double data = Double.valueOf(z.getContents().trim());
                 DatabaseReference cur = currentUserHealthInfo.child(HEALTH_INFO[i]);
                 Map<String, Object> newPost = new TreeMap<>();
 
